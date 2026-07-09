@@ -39,6 +39,7 @@ Every serious fix should include:
 - `case-studies/001-github-actions-esm-jest-debugging/`
 - `case-studies/002-pnpm-electron-playwright-ci/`
 - `case-studies/003-django-cross-resource-validation/`
+- `case-studies/004-wrangler-pages-summary-labels/`
 
 ## Scope rules
 
