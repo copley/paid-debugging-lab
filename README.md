@@ -40,6 +40,7 @@ Every serious fix should include:
 - `case-studies/002-pnpm-electron-playwright-ci/`
 - `case-studies/003-django-cross-resource-validation/`
 - `case-studies/004-wrangler-pages-summary-labels/`
+- `case-studies/005-aws-oidc-token-refresh-on-retry/`
 
 ## Scope rules
 
