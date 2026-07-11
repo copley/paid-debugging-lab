@@ -41,6 +41,7 @@ Every serious fix should include:
 - `case-studies/003-django-cross-resource-validation/`
 - `case-studies/004-wrangler-pages-summary-labels/`
 - `case-studies/005-aws-oidc-token-refresh-on-retry/`
+- `case-studies/006-playwright-firefox-worker-websocket/`
 
 ## Scope rules
 
