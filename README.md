@@ -42,6 +42,7 @@ Every serious fix should include:
 - `case-studies/004-wrangler-pages-summary-labels/`
 - `case-studies/005-aws-oidc-token-refresh-on-retry/`
 - `case-studies/006-playwright-firefox-worker-websocket/`
+- `case-studies/007-docker-cancelled-build-post-summary-export/`
 
 ## Scope rules
 
