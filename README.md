@@ -43,6 +43,7 @@ Every serious fix should include:
 - `case-studies/005-aws-oidc-token-refresh-on-retry/`
 - `case-studies/006-playwright-firefox-worker-websocket/`
 - `case-studies/007-docker-cancelled-build-post-summary-export/`
+- `case-studies/008-pytest-doctest-skip-location/`
 
 ## Scope rules
 
