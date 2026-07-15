@@ -45,6 +45,7 @@ Every serious fix should include:
 - `case-studies/007-docker-cancelled-build-post-summary-export/`
 - `case-studies/008-pytest-doctest-skip-location/`
 - `case-studies/009-playwright-client-cert-cached-rejection/`
+- `case-studies/010-poetry-core-marker-constraint-implication/`
 
 ## Scope rules
 
