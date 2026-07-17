@@ -2,6 +2,10 @@
 
 Paid Debugging Lab is my public storefront and proof-of-work repository for debugging, repo rescue, CI/CD repair, Docker fixes, AWS runtime diagnosis, Python/TypeScript bug fixing, API integration repair, and production-style troubleshooting.
 
+## Flagship project
+
+[**PySherlock**](https://github.com/copley/PySherlock) — an evidence-first debugging CLI that captures reproducible command failures and produces structured reports. Built as the foundation for safe AI-assisted diagnosis and verification.
+
 ## What I fix
 
 I help developers and small teams with blocked engineering work:
