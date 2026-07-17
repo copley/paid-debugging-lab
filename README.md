@@ -47,6 +47,7 @@ Every serious fix should include:
 - `case-studies/009-playwright-client-cert-cached-rejection/`
 - `case-studies/010-poetry-core-marker-constraint-implication/`
 - `case-studies/011-pydantic-deferred-namedtuple-serializer/`
+- `case-studies/012-docker-buildkit-otel-env-injection/`
 
 ## Scope rules
 
