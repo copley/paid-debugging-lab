@@ -53,6 +53,7 @@ Every serious fix should include:
 - `case-studies/011-pydantic-deferred-namedtuple-serializer/`
 - `case-studies/012-docker-buildkit-otel-env-injection/`
 - `case-studies/013-poetry-request-timeout-import-crash/`
+- `case-studies/014-wrangler-secret-binding-overwrite/`
 
 ## Scope rules
 
