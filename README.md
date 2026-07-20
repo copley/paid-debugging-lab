@@ -54,6 +54,7 @@ Every serious fix should include:
 - `case-studies/012-docker-buildkit-otel-env-injection/`
 - `case-studies/013-poetry-request-timeout-import-crash/`
 - `case-studies/014-wrangler-secret-binding-overwrite/`
+- `case-studies/015-aws-cdk-lambda-vpc-hash-order/`
 
 ## Scope rules
 
