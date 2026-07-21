@@ -55,6 +55,7 @@ Every serious fix should include:
 - `case-studies/013-poetry-request-timeout-import-crash/`
 - `case-studies/014-wrangler-secret-binding-overwrite/`
 - `case-studies/015-aws-cdk-lambda-vpc-hash-order/`
+- `case-studies/016-wrangler-failed-command-outputs/`
 
 ## Scope rules
 
