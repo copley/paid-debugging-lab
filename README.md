@@ -56,6 +56,7 @@ Every serious fix should include:
 - `case-studies/014-wrangler-secret-binding-overwrite/`
 - `case-studies/015-aws-cdk-lambda-vpc-hash-order/`
 - `case-studies/016-wrangler-failed-command-outputs/`
+- `case-studies/017-aws-cdk-lambda-target-type-docs/`
 
 ## Scope rules
 
