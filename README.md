@@ -58,6 +58,7 @@ Every serious fix should include:
 - `case-studies/016-wrangler-failed-command-outputs/`
 - `case-studies/017-aws-cdk-lambda-target-type-docs/`
 - `case-studies/018-setup-python-pip-cache-absolute-interpreter/`
+- `case-studies/019-poetry-symlinked-interpreter-venv-detection/`
 
 ## Scope rules
 
