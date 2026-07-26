@@ -60,6 +60,7 @@ Every serious fix should include:
 - `case-studies/018-setup-python-pip-cache-absolute-interpreter/`
 - `case-studies/019-poetry-symlinked-interpreter-venv-detection/`
 - `case-studies/020-playwright-accessible-name-distillation/`
+- `case-studies/021-playwright-tsconfig-bare-extends-resolution/`
 
 ## Scope rules
 
