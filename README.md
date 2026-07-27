@@ -61,6 +61,7 @@ Every serious fix should include:
 - `case-studies/019-poetry-symlinked-interpreter-venv-detection/`
 - `case-studies/020-playwright-accessible-name-distillation/`
 - `case-studies/021-playwright-tsconfig-bare-extends-resolution/`
+- `case-studies/022-aws-cdk-construct-dependency-nested-stack-blowup/`
 
 ## Scope rules
 
