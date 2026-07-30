@@ -64,6 +64,7 @@ Every serious fix should include:
 - `case-studies/022-aws-cdk-construct-dependency-nested-stack-blowup/`
 - `case-studies/023-cloudformation-icmpv6-security-group-validation/`
 - `case-studies/024-cloudformation-getstackoutput-duplicate-detection/`
+- `case-studies/025-vitest-pool-workers-dispose-rejection-leak/`
 
 ## Scope rules
 
