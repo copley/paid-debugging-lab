@@ -65,6 +65,7 @@ Every serious fix should include:
 - `case-studies/023-cloudformation-icmpv6-security-group-validation/`
 - `case-studies/024-cloudformation-getstackoutput-duplicate-detection/`
 - `case-studies/025-vitest-pool-workers-dispose-rejection-leak/`
+- `case-studies/026-buildx-transient-feature-probe-cache/`
 
 ## Scope rules
 
