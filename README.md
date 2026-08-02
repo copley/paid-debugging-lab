@@ -67,6 +67,7 @@ Every serious fix should include:
 - `case-studies/025-vitest-pool-workers-dispose-rejection-leak/`
 - `case-studies/026-buildx-transient-feature-probe-cache/`
 - `case-studies/027-cloudformation-route53-token-ip-validation/`
+- `case-studies/028-wrangler-pages-account-cache-precedence/`
 
 ## Scope rules
 
