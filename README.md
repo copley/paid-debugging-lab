@@ -68,6 +68,7 @@ Every serious fix should include:
 - `case-studies/026-buildx-transient-feature-probe-cache/`
 - `case-studies/027-cloudformation-route53-token-ip-validation/`
 - `case-studies/028-wrangler-pages-account-cache-precedence/`
+- `case-studies/029-c3-workerd-compatibility-date-clamp/`
 
 ## Scope rules
 
