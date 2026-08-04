@@ -69,6 +69,7 @@ Every serious fix should include:
 - `case-studies/027-cloudformation-route53-token-ip-validation/`
 - `case-studies/028-wrangler-pages-account-cache-precedence/`
 - `case-studies/029-c3-workerd-compatibility-date-clamp/`
+- `case-studies/030-setup-python-pypy-pip-overlay-downgrade/`
 
 ## Scope rules
 
