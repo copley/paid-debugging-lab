@@ -70,6 +70,7 @@ Every serious fix should include:
 - `case-studies/028-wrangler-pages-account-cache-precedence/`
 - `case-studies/029-c3-workerd-compatibility-date-clamp/`
 - `case-studies/030-setup-python-pypy-pip-overlay-downgrade/`
+- `case-studies/031-miniflare-exif-auto-orientation/`
 
 ## Scope rules
 
