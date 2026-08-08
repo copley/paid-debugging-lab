@@ -73,6 +73,7 @@ Every serious fix should include:
 - `case-studies/031-miniflare-exif-auto-orientation/`
 - `case-studies/032-vitest-pool-workers-space-path-redirect-sentinel/`
 - `case-studies/033-playwright-firefox-disable-app-update-policy/`
+- `case-studies/034-pydantic-gated-model-serializer-exclude-state/`
 
 ## Scope rules
 
