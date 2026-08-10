@@ -75,6 +75,7 @@ Every serious fix should include:
 - `case-studies/033-playwright-firefox-disable-app-update-policy/`
 - `case-studies/034-pydantic-gated-model-serializer-exclude-state/`
 - `case-studies/035-vitest-pool-workers-proxy-prototype-growth/`
+- `case-studies/036-actions-runner-orphan-process-snapshot-race/`
 
 ## Scope rules
 
