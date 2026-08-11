@@ -76,6 +76,7 @@ Every serious fix should include:
 - `case-studies/034-pydantic-gated-model-serializer-exclude-state/`
 - `case-studies/035-vitest-pool-workers-proxy-prototype-growth/`
 - `case-studies/036-actions-runner-orphan-process-snapshot-race/`
+- `case-studies/037-actions-languageserver-workflow-call-secret-completion/`
 
 ## Scope rules
 
