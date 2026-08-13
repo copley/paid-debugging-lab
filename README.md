@@ -78,6 +78,7 @@ Every serious fix should include:
 - `case-studies/036-actions-runner-orphan-process-snapshot-race/`
 - `case-studies/037-actions-languageserver-workflow-call-secret-completion/`
 - `case-studies/038-wrangler-r2-bucket-list-pagination/`
+- `case-studies/039-actions-workflow-parser-json-import-attributes/`
 
 ## Scope rules
 
