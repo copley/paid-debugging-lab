@@ -79,6 +79,7 @@ Every serious fix should include:
 - `case-studies/037-actions-languageserver-workflow-call-secret-completion/`
 - `case-studies/038-wrangler-r2-bucket-list-pagination/`
 - `case-studies/039-actions-workflow-parser-json-import-attributes/`
+- `case-studies/040-wrangler-temporary-auth-idempotency/`
 
 ## Scope rules
 
