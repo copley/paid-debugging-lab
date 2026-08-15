@@ -24,7 +24,8 @@ public class JavaNioExamples {
 
         CharBuffer chars = CharBuffer.wrap("Java NIO");
         System.out.println("char buffer length: " + chars.length());
-        System.out.println("slice from position 5: " + chars.position(5).slice());
+        chars.position(5);
+        System.out.println("slice from position 5: " + chars.slice());
 
         ByteBuffer direct = ByteBuffer.allocateDirect(8);
         direct.putLong(123456789L);
