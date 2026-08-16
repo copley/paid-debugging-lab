@@ -81,6 +81,7 @@ Every serious fix should include:
 - `case-studies/039-actions-workflow-parser-json-import-attributes/`
 - `case-studies/040-wrangler-temporary-auth-idempotency/`
 - `case-studies/041-workers-sdk-vite-access-dev-missing-wiring/`
+- `case-studies/042-workers-sdk-vite-remote-bindings-session-teardown/`
 
 ## Scope rules
 
