@@ -84,6 +84,7 @@ Every serious fix should include:
 - `case-studies/042-workers-sdk-vite-remote-bindings-session-teardown/`
 - `case-studies/043-actions-runner-run-service-renewal-lease-state/`
 - `case-studies/044-actions-runner-event-json-background-lock/`
+- `case-studies/045-wrangler-asset-manifest-hash-delay/`
 
 ## Scope rules
 
