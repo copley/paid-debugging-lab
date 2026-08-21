@@ -86,6 +86,7 @@ Every serious fix should include:
 - `case-studies/044-actions-runner-event-json-background-lock/`
 - `case-studies/045-wrangler-asset-manifest-hash-delay/`
 - `case-studies/046-pytest-shared-warning-traceback-retention/`
+- `case-studies/047-buildx-policy-eval-auth-session/`
 
 ## Scope rules
 
