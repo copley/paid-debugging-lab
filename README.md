@@ -87,6 +87,7 @@ Every serious fix should include:
 - `case-studies/045-wrangler-asset-manifest-hash-delay/`
 - `case-studies/046-pytest-shared-warning-traceback-retention/`
 - `case-studies/047-buildx-policy-eval-auth-session/`
+- `case-studies/048-wrangler-secret-tool-presence-probe/`
 
 ## Scope rules
 
