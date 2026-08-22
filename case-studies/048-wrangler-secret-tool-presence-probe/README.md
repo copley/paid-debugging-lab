@@ -23,11 +23,13 @@ The probe is trying to answer an existence question, but it uses command-success
 
 The existing test suite encodes the same incorrect contract: a non-zero `--version` exit is treated as absence.
 
+There is a second detail worth pinning in the regression: the production runner delegates to Node's synchronous child-process API. A missing executable is represented by a spawn error on the returned result (typically `ENOENT`, with no normal exit status), so the production check should inspect the spawn error state rather than rely only on a thrown exception from the test seam.
+
 ## Root cause
 
 The probe conflates two different states:
 
-1. the executable cannot be launched (`ENOENT`, spawn failure), and
+1. the executable cannot be launched (for example a returned `ENOENT` spawn error), and
 2. the executable launches successfully but rejects the supplied option.
 
 Only the first proves that `secret-tool` is unavailable.
@@ -36,13 +38,13 @@ Only the first proves that `secret-tool` is unavailable.
 
 Make the presence check depend on process-launch success rather than `--version` success.
 
-A robust implementation should treat a completed child process as evidence that the executable exists, even when its exit code is non-zero. A spawn error such as `ENOENT` remains the negative case.
+A robust implementation should treat a child process that was successfully spawned as evidence that the executable exists, even when its exit code is non-zero. A spawn error such as `ENOENT` remains the negative case.
 
 The narrow patch surface is:
 
-- `linux-secret-tool.ts`: change `probeSecretTool()` semantics;
+- `linux-secret-tool.ts`: change `probeSecretTool()` to distinguish a spawn error from a normal non-zero exit;
 - `linux-secret-tool.test.ts`: replace the “non-zero means missing” assertion with coverage for a real `secret-tool`-style usage exit (for example status 2) returning `true`;
-- retain the existing spawn-error/`ENOENT` test returning `false`;
+- add a returned `ENOENT`/spawn-error result test returning `false` (the existing throwing-runner test may remain as defensive coverage);
 - retain memoization behavior.
 
 ## Verification
@@ -51,7 +53,8 @@ Useful regression matrix:
 
 | Probe result | Meaning | Expected |
 | --- | --- | --- |
-| spawn throws `ENOENT` | executable absent | `false` |
+| returned spawn error `ENOENT`, status `null` | executable absent | `false` |
+| runner throws | defensive failure case | `false` |
 | process exits `0` | executable present | `true` |
 | process exits `2` with usage text | executable present, option unsupported | `true` |
 | repeated probe | memoized | one spawn only |
