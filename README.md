@@ -88,6 +88,7 @@ Every serious fix should include:
 - `case-studies/046-pytest-shared-warning-traceback-retention/`
 - `case-studies/047-buildx-policy-eval-auth-session/`
 - `case-studies/048-wrangler-secret-tool-presence-probe/`
+- `case-studies/049-pydantic-secret-none-json-serializer/`
 
 ## Scope rules
 
