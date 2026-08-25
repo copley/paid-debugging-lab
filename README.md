@@ -90,6 +90,7 @@ Every serious fix should include:
 - `case-studies/048-wrangler-secret-tool-presence-probe/`
 - `case-studies/049-pydantic-secret-none-json-serializer/`
 - `case-studies/050-setup-python-cross-os-toolcache-collision/`
+- `case-studies/051-wrangler-disabled-metrics-agent-skills-fetch/`
 
 ## Scope rules
 
