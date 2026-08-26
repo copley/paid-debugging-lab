@@ -91,6 +91,7 @@ Every serious fix should include:
 - `case-studies/049-pydantic-secret-none-json-serializer/`
 - `case-studies/050-setup-python-cross-os-toolcache-collision/`
 - `case-studies/051-wrangler-disabled-metrics-agent-skills-fetch/`
+- `case-studies/052-miniflare-bun-server-close-semantics/`
 
 ## Scope rules
 
