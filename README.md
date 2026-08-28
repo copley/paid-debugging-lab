@@ -93,6 +93,7 @@ Every serious fix should include:
 - `case-studies/051-wrangler-disabled-metrics-agent-skills-fetch/`
 - `case-studies/052-miniflare-bun-server-close-semantics/`
 - `case-studies/053-miniflare-declaration-rollup-dangling-shared-import/`
+- `case-studies/054-vitest-tomatchobject-arraycontaining-equality-context/`
 
 ## Scope rules
 
