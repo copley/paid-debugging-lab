@@ -95,6 +95,7 @@ Every serious fix should include:
 - `case-studies/053-miniflare-declaration-rollup-dangling-shared-import/`
 - `case-studies/054-vitest-tomatchobject-arraycontaining-equality-context/`
 - `case-studies/055-setup-python-graalpy-four-part-version/`
+- `case-studies/056-miniflare-multi-browser-sigint-signal-ownership/`
 
 ## Scope rules
 
