@@ -38,6 +38,23 @@ Every serious fix should include:
 - verification command
 - prevention note
 
+## Upstream contribution workflow
+
+New portfolio case studies follow an evidence-gated sequence:
+
+```text
+Search issue
+-> read every comment
+-> search open and closed pull requests
+-> announce intent
+-> reproduce
+-> implement and test
+-> open upstream pull request
+-> create portfolio case study
+```
+
+A diagnosis or issue comment is not presented as an upstream contribution. New case studies must link a real upstream pull request and identify it as either `upstream contribution in progress` or `merged upstream contribution`. See [UPSTREAM_CONTRIBUTION_WORKFLOW.md](UPSTREAM_CONTRIBUTION_WORKFLOW.md) and [the case-study template](case-studies/CASE_STUDY_TEMPLATE.md).
+
 ## Case studies
 
 - `case-studies/001-github-actions-esm-jest-debugging/`
@@ -96,7 +113,7 @@ Every serious fix should include:
 - `case-studies/054-vitest-tomatchobject-arraycontaining-equality-context/`
 - `case-studies/055-setup-python-graalpy-four-part-version/`
 - `case-studies/056-miniflare-multi-browser-sigint-signal-ownership/`
-- `case-studies/057-vitest-it-fails-retry-contract/`
+- `case-studies/057-vitest-it-fails-retry-contract/` — research-only; no upstream PR by this repository's author
 
 ## Scope rules
 
@@ -119,3 +136,4 @@ Error output:
 Environment:
 Deadline/urgency:
 ```
+
