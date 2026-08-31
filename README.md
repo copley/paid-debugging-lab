@@ -1,14 +1,55 @@
 # Paid Debugging Lab
 
-Paid Debugging Lab is my public storefront and proof-of-work repository for debugging, repo rescue, CI/CD repair, Docker fixes, AWS runtime diagnosis, Python/TypeScript bug fixing, API integration repair, and production-style troubleshooting.
+**Enterprise Java production rescue, incident diagnosis, and reliability engineering.**
+
+This repository is a proof-of-work storefront for taking ambiguous or brittle backend failures and turning them into reproducible incidents, bounded root causes, tested fixes, and operational guardrails. My primary contract focus is Java/Spring Boot systems where failure cost is high: concurrency, lifecycle and resource leaks, integration resilience, data consistency, JVM/runtime diagnosis, AWS infrastructure, and CI/CD reliability.
+
+The open-source case studies below also cover Python, TypeScript, Docker, GitHub Actions, AWS, Playwright, and API integrations. They demonstrate the same engineering method I apply to enterprise Java systems: reproduce first, identify the ownership boundary, make the smallest safe change, and prove the fix with regression coverage.
+
+## Executive focus
+
+I am most useful when a team has a system that is technically running but operationally untrustworthy: intermittent deadlocks, unexplained latency, memory growth, fragile third-party integrations, CI failures, non-deterministic tests, or production behaviour that cannot be reproduced locally.
+
+A serious debugging engagement should end with more than a patch. It should leave behind:
+
+- a deterministic or well-instrumented reproduction
+- evidence that isolates the failing subsystem
+- a precise root-cause explanation
+- a bounded implementation change
+- regression tests at the correct ownership boundary
+- observability or prevention that makes recurrence easier to detect
+
+## Enterprise Java capability
+
+- Java 17/21/25, Spring Boot, Maven and Gradle
+- thread contention, deadlock, starvation and executor-lifecycle analysis
+- `jstack`/thread-dump reasoning and concurrency-state reconstruction
+- heap/resource leak diagnosis, listener ownership and unmanaged lifecycle cleanup
+- `ConcurrentHashMap`, atomics, locks and contention-aware state design
+- defensive HTTP/API integration, validation, retry/backoff and idempotency
+- transaction/data-consistency failure analysis
+- AWS deployment and runtime diagnosis
+- Docker/Kubernetes/CI reproducibility and environment isolation
+- regression, stress and integration testing around production failure contracts
+
+## Incident-report standard
+
+Each substantial fix is treated like an enterprise incident rather than a coding exercise:
+
+1. **Failure contract** — what broke, under which workload/environment, and why it matters.
+2. **Evidence** — logs, traces, thread/heap evidence, source inspection, or a minimal reproducer.
+3. **Root cause** — the specific lifecycle, concurrency, serialization, transport, or ownership boundary that failed.
+4. **Stabilization** — the smallest change that restores the intended invariant without broad collateral behaviour changes.
+5. **Verification** — regression, integration, stress, or artifact-level tests that would have caught the defect before release.
+6. **Prevention** — observability, validation, or architectural guardrails that make the same class of failure harder to reintroduce.
 
 ## Flagship project
 
 [**PySherlock**](https://github.com/copley/PySherlock) — an evidence-first debugging CLI that captures reproducible command failures and produces structured reports. Built as the foundation for safe AI-assisted diagnosis and verification.
 
-## What I fix
+## Broader debugging scope
 
-I help developers and small teams with blocked engineering work:
+I also diagnose and repair:
 
 - broken Python scripts and tracebacks
 - TypeScript / Node.js build and runtime errors
@@ -17,7 +58,7 @@ I help developers and small teams with blocked engineering work:
 - AWS deployment and runtime problems
 - API integration bugs
 - Playwright scraper/browser automation issues
-- repos that will not run locally
+- repositories that will not run reproducibly in a clean environment
 
 ## How a paid debugging request works
 
@@ -136,4 +177,3 @@ Error output:
 Environment:
 Deadline/urgency:
 ```
-
