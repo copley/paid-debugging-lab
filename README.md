@@ -96,6 +96,7 @@ Every serious fix should include:
 - `case-studies/054-vitest-tomatchobject-arraycontaining-equality-context/`
 - `case-studies/055-setup-python-graalpy-four-part-version/`
 - `case-studies/056-miniflare-multi-browser-sigint-signal-ownership/`
+- `case-studies/057-vitest-it-fails-retry-contract/`
 
 ## Scope rules
 
@@ -118,7 +119,3 @@ Error output:
 Environment:
 Deadline/urgency:
 ```
-
-## Public issue comments
-
-If I comment on your open-source issue, I aim to provide real diagnostic value first: likely root cause, reproduction path, affected file, or PR direction. I do not use generic spam comments.
