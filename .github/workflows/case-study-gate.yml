@@ -1,0 +1,30 @@
+name: Case Study Evidence Gate
+
+on:
+  pull_request:
+    paths:
+      - 'case-studies/**'
+      - 'scripts/validate_case_studies.py'
+      - '.github/workflows/case-study-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-new-case-studies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate newly published case studies
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          mapfile -t case_files < <(
+            git diff --name-only --diff-filter=A "$BASE_SHA" "$HEAD_SHA" -- 'case-studies/*/README.md'
+          )
+          python scripts/validate_case_studies.py "${case_files[@]}"
+
