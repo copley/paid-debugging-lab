@@ -2,9 +2,26 @@
 
 **Enterprise Java production rescue, incident diagnosis, and reliability engineering.**
 
-This repository is a proof-of-work storefront for taking ambiguous or brittle backend failures and turning them into reproducible incidents, bounded root causes, tested fixes, and operational guardrails. My primary contract focus is Java/Spring Boot systems where failure cost is high: concurrency, lifecycle and resource leaks, integration resilience, data consistency, JVM/runtime diagnosis, AWS infrastructure, and CI/CD reliability.
+This repository is a proof-of-work storefront for taking ambiguous or brittle backend failures and turning them into reproducible incidents, bounded root causes, tested fixes, and operational guardrails.
 
-The open-source case studies below also cover Python, TypeScript, Docker, GitHub Actions, AWS, Playwright, and API integrations. They demonstrate the same engineering method I apply to enterprise Java systems: reproduce first, identify the ownership boundary, make the smallest safe change, and prove the fix with regression coverage.
+My primary contract focus is **Java / Spring Boot systems where failure cost is high**: concurrency, lifecycle and resource leaks, integration resilience, data consistency, JVM/runtime diagnosis, AWS infrastructure, and CI/CD reliability.
+
+The open-source investigations in this repository also cover Python, TypeScript, Docker, GitHub Actions, AWS, Playwright, and API integrations. They demonstrate the same engineering method I apply to enterprise Java systems: **reproduce first, identify the ownership boundary, make the smallest safe change, and prove the fix at that boundary.**
+
+## Start here
+
+For an engineering manager or contract recruiter, these investigations show the failure classes I am strongest at diagnosing:
+
+| Failure class | Representative investigation | Enterprise Java analogue |
+| --- | --- | --- |
+| Concurrency / lifecycle race | [`036-actions-runner-orphan-process-snapshot-race`](case-studies/036-actions-runner-orphan-process-snapshot-race/) | executor shutdown, worker ownership, process lifecycle races |
+| Shared-resource synchronization | [`044-actions-runner-event-json-background-lock`](case-studies/044-actions-runner-event-json-background-lock/) | job-scoped vs request-scoped locks, shared-file ownership |
+| Authentication context propagation | [`047-buildx-policy-eval-auth-session`](case-studies/047-buildx-policy-eval-auth-session/) | Spring Security context, authenticated HTTP clients, downstream session propagation |
+| Environment / runtime compatibility | [`050-setup-python-cross-os-toolcache-collision`](case-studies/050-setup-python-cross-os-toolcache-collision/) | JVM/native-library compatibility, CI cache poisoning, platform-specific artifacts |
+| Resource teardown semantics | [`052-miniflare-bun-server-close-semantics`](case-studies/052-miniflare-bun-server-close-semantics/) | idempotent shutdown, lifecycle contracts, graceful service termination |
+| Multi-process signal ownership | [`056-miniflare-multi-browser-sigint-signal-ownership`](case-studies/056-miniflare-multi-browser-sigint-signal-ownership/) | coordinated worker shutdown, child-process cleanup, service supervision |
+
+These are investigations, not automatically claims of merged upstream contribution. Where an upstream PR exists, the case study should identify it explicitly.
 
 ## Executive focus
 
@@ -23,11 +40,11 @@ A serious debugging engagement should end with more than a patch. It should leav
 
 - Java 17/21/25, Spring Boot, Maven and Gradle
 - thread contention, deadlock, starvation and executor-lifecycle analysis
-- `jstack`/thread-dump reasoning and concurrency-state reconstruction
+- `jstack` / thread-dump reasoning and concurrency-state reconstruction
 - heap/resource leak diagnosis, listener ownership and unmanaged lifecycle cleanup
 - `ConcurrentHashMap`, atomics, locks and contention-aware state design
 - defensive HTTP/API integration, validation, retry/backoff and idempotency
-- transaction/data-consistency failure analysis
+- transaction and data-consistency failure analysis
 - AWS deployment and runtime diagnosis
 - Docker/Kubernetes/CI reproducibility and environment isolation
 - regression, stress and integration testing around production failure contracts
@@ -43,9 +60,26 @@ Each substantial fix is treated like an enterprise incident rather than a coding
 5. **Verification** — regression, integration, stress, or artifact-level tests that would have caught the defect before release.
 6. **Prevention** — observability, validation, or architectural guardrails that make the same class of failure harder to reintroduce.
 
+## Typical contract deliverable
+
+A bounded production-rescue engagement should produce an incident package that another senior engineer can independently verify:
+
+```text
+incident/
+├── REPRODUCTION.md
+├── ROOT_CAUSE.md
+├── patch-or-pr.diff
+├── verification/
+│   ├── regression-test
+│   └── stress-or-integration-test
+└── PREVENTION.md
+```
+
+For Java systems, evidence may additionally include thread dumps, heap/JFR observations, GC or connection-pool metrics, executor state, dependency/runtime matrices, and before/after load measurements.
+
 ## Flagship project
 
-[**PySherlock**](https://github.com/copley/PySherlock) — an evidence-first debugging CLI that captures reproducible command failures and produces structured reports. Built as the foundation for safe AI-assisted diagnosis and verification.
+[**PySherlock**](https://github.com/copley/PySherlock) — an evidence-first debugging CLI that captures reproducible command failures and produces structured reports. Built as a foundation for safe AI-assisted diagnosis and verification.
 
 ## Broader debugging scope
 
@@ -57,7 +91,7 @@ I also diagnose and repair:
 - GitHub Actions / CI failures
 - AWS deployment and runtime problems
 - API integration bugs
-- Playwright scraper/browser automation issues
+- Playwright browser automation issues
 - repositories that will not run reproducibly in a clean environment
 
 ## How a paid debugging request works
@@ -69,92 +103,26 @@ I also diagnose and repair:
 5. I submit a branch, PR, patch, or written diagnosis.
 6. I document how to verify the fix and avoid the same problem next time.
 
-## Deliverables
-
-Every serious fix should include:
-
-- reproduction notes
-- root-cause analysis
-- patch or fix direction
-- verification command
-- prevention note
-
 ## Upstream contribution workflow
 
-New portfolio case studies follow an evidence-gated sequence:
+New upstream portfolio work follows an evidence-gated sequence:
 
 ```text
 Search issue
 -> read every comment
 -> search open and closed pull requests
--> announce intent
+-> announce intent when useful
 -> reproduce
 -> implement and test
 -> open upstream pull request
--> create portfolio case study
+-> create contribution case study
 ```
 
-A diagnosis or issue comment is not presented as an upstream contribution. New case studies must link a real upstream pull request and identify it as either `upstream contribution in progress` or `merged upstream contribution`. See [UPSTREAM_CONTRIBUTION_WORKFLOW.md](UPSTREAM_CONTRIBUTION_WORKFLOW.md) and [the case-study template](case-studies/CASE_STUDY_TEMPLATE.md).
+A diagnosis or issue comment is not presented as a merged upstream contribution. See [UPSTREAM_CONTRIBUTION_WORKFLOW.md](UPSTREAM_CONTRIBUTION_WORKFLOW.md) and [the case-study template](case-studies/CASE_STUDY_TEMPLATE.md).
 
-## Case studies
+## Case-study archive
 
-- `case-studies/001-github-actions-esm-jest-debugging/`
-- `case-studies/002-pnpm-electron-playwright-ci/`
-- `case-studies/003-django-cross-resource-validation/`
-- `case-studies/004-wrangler-pages-summary-labels/`
-- `case-studies/005-aws-oidc-token-refresh-on-retry/`
-- `case-studies/006-playwright-firefox-worker-websocket/`
-- `case-studies/007-docker-cancelled-build-post-summary-export/`
-- `case-studies/008-pytest-doctest-skip-location/`
-- `case-studies/009-playwright-client-cert-cached-rejection/`
-- `case-studies/010-poetry-core-marker-constraint-implication/`
-- `case-studies/011-pydantic-deferred-namedtuple-serializer/`
-- `case-studies/012-docker-buildkit-otel-env-injection/`
-- `case-studies/013-poetry-request-timeout-import-crash/`
-- `case-studies/014-wrangler-secret-binding-overwrite/`
-- `case-studies/015-aws-cdk-lambda-vpc-hash-order/`
-- `case-studies/016-wrangler-failed-command-outputs/`
-- `case-studies/017-aws-cdk-lambda-target-type-docs/`
-- `case-studies/018-setup-python-pip-cache-absolute-interpreter/`
-- `case-studies/019-poetry-symlinked-interpreter-venv-detection/`
-- `case-studies/020-playwright-accessible-name-distillation/`
-- `case-studies/021-playwright-tsconfig-bare-extends-resolution/`
-- `case-studies/022-aws-cdk-construct-dependency-nested-stack-blowup/`
-- `case-studies/023-cloudformation-icmpv6-security-group-validation/`
-- `case-studies/024-cloudformation-getstackoutput-duplicate-detection/`
-- `case-studies/025-vitest-pool-workers-dispose-rejection-leak/`
-- `case-studies/026-buildx-transient-feature-probe-cache/`
-- `case-studies/027-cloudformation-route53-token-ip-validation/`
-- `case-studies/028-wrangler-pages-account-cache-precedence/`
-- `case-studies/029-c3-workerd-compatibility-date-clamp/`
-- `case-studies/030-setup-python-pypy-pip-overlay-downgrade/`
-- `case-studies/031-miniflare-exif-auto-orientation/`
-- `case-studies/032-vitest-pool-workers-space-path-redirect-sentinel/`
-- `case-studies/033-playwright-firefox-disable-app-update-policy/`
-- `case-studies/034-pydantic-gated-model-serializer-exclude-state/`
-- `case-studies/035-vitest-pool-workers-proxy-prototype-growth/`
-- `case-studies/036-actions-runner-orphan-process-snapshot-race/`
-- `case-studies/037-actions-languageserver-workflow-call-secret-completion/`
-- `case-studies/038-wrangler-r2-bucket-list-pagination/`
-- `case-studies/039-actions-workflow-parser-json-import-attributes/`
-- `case-studies/040-wrangler-temporary-auth-idempotency/`
-- `case-studies/041-workers-sdk-vite-access-dev-missing-wiring/`
-- `case-studies/042-workers-sdk-vite-remote-bindings-session-teardown/`
-- `case-studies/043-actions-runner-run-service-renewal-lease-state/`
-- `case-studies/044-actions-runner-event-json-background-lock/`
-- `case-studies/045-wrangler-asset-manifest-hash-delay/`
-- `case-studies/046-pytest-shared-warning-traceback-retention/`
-- `case-studies/047-buildx-policy-eval-auth-session/`
-- `case-studies/048-wrangler-secret-tool-presence-probe/`
-- `case-studies/049-pydantic-secret-none-json-serializer/`
-- `case-studies/050-setup-python-cross-os-toolcache-collision/`
-- `case-studies/051-wrangler-disabled-metrics-agent-skills-fetch/`
-- `case-studies/052-miniflare-bun-server-close-semantics/`
-- `case-studies/053-miniflare-declaration-rollup-dangling-shared-import/`
-- `case-studies/054-vitest-tomatchobject-arraycontaining-equality-context/`
-- `case-studies/055-setup-python-graalpy-four-part-version/`
-- `case-studies/056-miniflare-multi-browser-sigint-signal-ownership/`
-- `case-studies/057-vitest-it-fails-retry-contract/` — research-only; no upstream PR by this repository's author
+The full investigation archive is under [`case-studies/`](case-studies/). It currently spans GitHub Actions, AWS/CDK, Docker/Buildx, Python packaging, pytest/Pydantic, Playwright, Vitest, Wrangler/Miniflare, CI lifecycle failures, authentication propagation, serialization and runtime compatibility.
 
 ## Scope rules
 
