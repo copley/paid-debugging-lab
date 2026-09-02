@@ -49,6 +49,21 @@ A serious debugging engagement should end with more than a patch. It should leav
 - Docker/Kubernetes/CI reproducibility and environment isolation
 - regression, stress and integration testing around production failure contracts
 
+## Contract-ready rescue scenarios
+
+The commercial value is not the language feature used in the patch; it is the production failure removed and the evidence left behind.
+
+| Incident | What I isolate | Typical stabilization outcome |
+| --- | --- | --- |
+| JVM service freezes under load | thread dumps, lock ownership, executor saturation, blocked dependency calls | bounded concurrency, corrected lock/lifecycle ownership, stress regression |
+| Spring Boot memory grows until restart | heap/JFR evidence, retained listeners/tasks/caches, resource ownership | explicit lifecycle cleanup, bounded retention, repeatable leak test |
+| Third-party API intermittently corrupts a workflow | malformed payload boundary, timeout/retry semantics, idempotency and error visibility | validated adapter, defensive parsing, observable retry/failure contract |
+| CI passes locally but fails on runners | runtime/dependency/cache/environment delta | reproducible build, corrected cache identity, deterministic CI checks |
+| AWS deployment succeeds but runtime is unhealthy | IAM/network/configuration/runtime boundary | minimal infrastructure/runtime correction plus verification runbook |
+| Background worker duplicates or loses work | transaction boundary, retry ownership, shutdown race, deduplication state | idempotent processing contract and concurrency/integration regression |
+
+This is the work I want a contract lead to evaluate: **can the engineer turn an expensive, ambiguous failure into a reproducible engineering fact and a low-risk fix?**
+
 ## Incident-report standard
 
 Each substantial fix is treated like an enterprise incident rather than a coding exercise:
