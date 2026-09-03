@@ -141,9 +141,9 @@ _Last reviewed: 2026-09-03._ These are source-inspected candidates in the engine
 
 | Upstream issue | Failure class | Current evidence |
 | --- | --- | --- |
-| [`cloudflare/workers-sdk#15479`](https://github.com/cloudflare/workers-sdk/issues/15479) | cross-project storage isolation | DO/Workflow explorer routes use unscoped peer discovery while KV/D1/R2 already use `sharedStorageOnly`; no matching PR found |
-| [`pytest-dev/pytest#14964`](https://github.com/pytest-dev/pytest/issues/14964) | fixture lifecycle / collector identity regression | conftest parsing is popped once by directory path but autouse visibility is keyed to collector node identity; no matching PR found |
-| [`actions/runner#4668`](https://github.com/actions/runner/issues/4668) | unbounded network wait / ephemeral runner capacity leak | `HttpClient.Timeout` is disabled while response-content buffering can outlive the handler-scoped send timeout; no matching PR found |
+| [`cloudflare/workers-sdk#15473`](https://github.com/cloudflare/workers-sdk/issues/15473) | API contract / local-production parity | Local Explorer OpenAPI, generated validators and Wrangler local client use `action`, while the production Workflows status endpoint uses `status`; no matching PR found |
+| [`moby/buildkit#7108`](https://github.com/moby/buildkit/issues/7108) | cache identity / integrity validation | pinned-checksum HTTP metadata skips the request and the source cache key contains basename + checksum but not URL, allowing different URLs with the same basename to alias; no matching PR found |
+| [`actions/runner#4668`](https://github.com/actions/runner/issues/4668) | unbounded network wait / ephemeral capacity leak | `HttpClient.Timeout` is disabled while `ResponseContentRead` can buffer the response body after the handler-scoped `SendTimeout` token is disposed; no matching PR found |
 
 A candidate leaves this table and becomes a contribution case study only after the repository workflow has produced reproducible verification and an upstream patch/PR.
 
