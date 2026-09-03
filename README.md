@@ -135,6 +135,18 @@ Search issue
 
 A diagnosis or issue comment is not presented as a merged upstream contribution. See [UPSTREAM_CONTRIBUTION_WORKFLOW.md](UPSTREAM_CONTRIBUTION_WORKFLOW.md) and [the case-study template](case-studies/CASE_STUDY_TEMPLATE.md).
 
+## Active upstream investigations
+
+_Last reviewed: 2026-09-03._ These are source-inspected candidates in the engineering queue, not claims of contribution.
+
+| Upstream issue | Failure class | Current evidence |
+| --- | --- | --- |
+| [`cloudflare/workers-sdk#15479`](https://github.com/cloudflare/workers-sdk/issues/15479) | cross-project storage isolation | DO/Workflow explorer routes use unscoped peer discovery while KV/D1/R2 already use `sharedStorageOnly`; no matching PR found |
+| [`pytest-dev/pytest#14964`](https://github.com/pytest-dev/pytest/issues/14964) | fixture lifecycle / collector identity regression | conftest parsing is popped once by directory path but autouse visibility is keyed to collector node identity; no matching PR found |
+| [`actions/runner#4668`](https://github.com/actions/runner/issues/4668) | unbounded network wait / ephemeral runner capacity leak | `HttpClient.Timeout` is disabled while response-content buffering can outlive the handler-scoped send timeout; no matching PR found |
+
+A candidate leaves this table and becomes a contribution case study only after the repository workflow has produced reproducible verification and an upstream patch/PR.
+
 ## Case-study archive
 
 The full investigation archive is under [`case-studies/`](case-studies/). It currently spans GitHub Actions, AWS/CDK, Docker/Buildx, Python packaging, pytest/Pydantic, Playwright, Vitest, Wrangler/Miniflare, CI lifecycle failures, authentication propagation, serialization and runtime compatibility.
