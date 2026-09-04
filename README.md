@@ -137,13 +137,13 @@ A diagnosis or issue comment is not presented as a merged upstream contribution.
 
 ## Active upstream investigations
 
-_Last reviewed: 2026-09-03._ These are source-inspected candidates in the engineering queue, not claims of contribution.
+_Last reviewed: 2026-09-04._ These are source-inspected candidates in the engineering queue, not claims of contribution.
 
 | Upstream issue | Failure class | Current evidence |
 | --- | --- | --- |
-| [`cloudflare/workers-sdk#15473`](https://github.com/cloudflare/workers-sdk/issues/15473) | API contract / local-production parity | Local Explorer OpenAPI, generated validators and Wrangler local client use `action`, while the production Workflows status endpoint uses `status`; no matching PR found |
-| [`moby/buildkit#7108`](https://github.com/moby/buildkit/issues/7108) | cache identity / integrity validation | pinned-checksum HTTP metadata skips the request and the source cache key contains basename + checksum but not URL, allowing different URLs with the same basename to alias; no matching PR found |
-| [`actions/runner#4668`](https://github.com/actions/runner/issues/4668) | unbounded network wait / ephemeral capacity leak | `HttpClient.Timeout` is disabled while `ResponseContentRead` can buffer the response body after the handler-scoped `SendTimeout` token is disposed; no matching PR found |
+| [`aws/aws-cdk#38764`](https://github.com/aws/aws-cdk/issues/38764) | Docker build-user permissions / cache ownership regression | current Lambda Node.js bundling Dockerfile makes `/tmp/npm-cache` world-writable and then runs a root npm command after the chmod; the original #9167 fix explicitly required no root-created cache content before non-root bundling; no matching PR found |
+| [`cloudflare/workers-sdk#15484`](https://github.com/cloudflare/workers-sdk/issues/15484) | redirected configuration provenance / auto-provisioning | redirected-config protection checks whether a binding existed in the original config, but then serializes the complete transformed binding back into the user config, allowing dist-relative D1 `migrations_dir` to overwrite the original path; no matching PR found |
+| [`cloudflare/workers-sdk#15479`](https://github.com/cloudflare/workers-sdk/issues/15479) | local state isolation / peer-scope ownership | KV, D1 and R2 explicitly aggregate with `sharedStorageOnly: true`, while Durable Object and Workflow routes use the unrestricted peer set even though the helper already supports `storageScope` filtering; no matching PR found |
 
 A candidate leaves this table and becomes a contribution case study only after the repository workflow has produced reproducible verification and an upstream patch/PR.
 
