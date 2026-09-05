@@ -137,13 +137,13 @@ A diagnosis or issue comment is not presented as a merged upstream contribution.
 
 ## Active upstream investigations
 
-_Last reviewed: 2026-09-04._ These are source-inspected candidates in the engineering queue, not claims of contribution.
+_Last reviewed: 2026-09-05._ These are source-inspected candidates in the engineering queue, not claims of contribution.
 
 | Upstream issue | Failure class | Current evidence |
 | --- | --- | --- |
-| [`aws/aws-cdk#38764`](https://github.com/aws/aws-cdk/issues/38764) | Docker build-user permissions / cache ownership regression | current Lambda Node.js bundling Dockerfile makes `/tmp/npm-cache` world-writable and then runs a root npm command after the chmod; the original #9167 fix explicitly required no root-created cache content before non-root bundling; no matching PR found |
-| [`cloudflare/workers-sdk#15484`](https://github.com/cloudflare/workers-sdk/issues/15484) | redirected configuration provenance / auto-provisioning | redirected-config protection checks whether a binding existed in the original config, but then serializes the complete transformed binding back into the user config, allowing dist-relative D1 `migrations_dir` to overwrite the original path; no matching PR found |
-| [`cloudflare/workers-sdk#15479`](https://github.com/cloudflare/workers-sdk/issues/15479) | local state isolation / peer-scope ownership | KV, D1 and R2 explicitly aggregate with `sharedStorageOnly: true`, while Durable Object and Workflow routes use the unrestricted peer set even though the helper already supports `storageScope` filtering; no matching PR found |
+| [`vitest-dev/vitest#11149`](https://github.com/vitest-dev/vitest/issues/11149) | derived-project identity / CLI filtering regression | Vitest 5 creates benchmark variants with a synthetic `" (bench)"` project name and applies `--project` only after that expansion; the original logical project name is already retained separately in `benchmark.projectName`; no matching open PR found |
+| [`actions/runner#4670`](https://github.com/actions/runner/issues/4670) | job ownership / overlapping assignment cancellation | `JobDispatcher.EnsureDispatchFinished()` explicitly cancels an unfinished previous worker immediately for Run Service jobs, while the legacy path checks server-side job state before cancellation; the reported logs match this branch exactly; no matching open PR found |
+| [`vitest-dev/vitest#11153`](https://github.com/vitest-dev/vitest/issues/11153) | asynchronous console RPC / teardown race | console output is buffered to a microtask and sent through request/response RPC; worker cleanup drains the currently tracked RPC promises once and then rejects any remaining calls as `EnvironmentTeardownError`, leaving a narrow window for a late `onUserConsoleLog` call to become the teardown failure; no matching open PR found |
 
 A candidate leaves this table and becomes a contribution case study only after the repository workflow has produced reproducible verification and an upstream patch/PR.
 
