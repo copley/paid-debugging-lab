@@ -135,15 +135,21 @@ Search issue
 
 A diagnosis or issue comment is not presented as a merged upstream contribution. See [UPSTREAM_CONTRIBUTION_WORKFLOW.md](UPSTREAM_CONTRIBUTION_WORKFLOW.md) and [the case-study template](case-studies/CASE_STUDY_TEMPLATE.md).
 
+## Verified upstream contribution in review
+
+The current strongest proof-of-work item has crossed the investigation gate and is now an upstream PR:
+
+- **Vitest #11155 — benchmark project-filter identity regression:** [`case-studies/058-vitest-benchmark-project-filter-identity/`](case-studies/058-vitest-benchmark-project-filter-identity/) documents reproduction, root cause, bounded TypeScript fix, regression coverage, and full-suite verification. The upstream PR is open, so this is presented as **contribution in review**, not merged work.
+
 ## Active upstream investigations
 
-_Last reviewed: 2026-09-05._ These are source-inspected candidates in the engineering queue, not claims of contribution.
+_Last reviewed: 2026-09-06._ These are source-inspected candidates in the engineering queue, not claims of contribution.
 
 | Upstream issue | Failure class | Current evidence |
 | --- | --- | --- |
-| [`vitest-dev/vitest#11149`](https://github.com/vitest-dev/vitest/issues/11149) | derived-project identity / CLI filtering regression | Vitest 5 creates benchmark variants with a synthetic `" (bench)"` project name and applies `--project` only after that expansion; the original logical project name is already retained separately in `benchmark.projectName`; no matching open PR found |
-| [`actions/runner#4670`](https://github.com/actions/runner/issues/4670) | job ownership / overlapping assignment cancellation | `JobDispatcher.EnsureDispatchFinished()` explicitly cancels an unfinished previous worker immediately for Run Service jobs, while the legacy path checks server-side job state before cancellation; the reported logs match this branch exactly; no matching open PR found |
-| [`vitest-dev/vitest#11153`](https://github.com/vitest-dev/vitest/issues/11153) | asynchronous console RPC / teardown race | console output is buffered to a microtask and sent through request/response RPC; worker cleanup drains the currently tracked RPC promises once and then rejects any remaining calls as `EnvironmentTeardownError`, leaving a narrow window for a late `onUserConsoleLog` call to become the teardown failure; no matching open PR found |
+| [`microsoft/playwright#42579`](https://github.com/microsoft/playwright/issues/42579) | cross-browser storage-state restore / empty-state semantics | WebKit can reject `navigator.storage.getDirectory()` during restore; the injected restore code says it should fail only when OPFS entries exist but checks only whether `opfs` is undefined, so the legal empty state `opfs: []` throws instead of becoming a no-op; no issue comments or matching fixing PR found |
+| [`cloudflare/workers-sdk#15525`](https://github.com/cloudflare/workers-sdk/issues/15525) | Vite hot-update ownership / dev-server restart race | the additional-modules plugin records resolved Worker `Text` module paths in a shared set and restarts the server whenever a hot-update path is in that set; Cloudflare automated triage independently reproduced the client `index.html` restart plus page-reload race, while plain Vite reloads without restart; no matching PR found |
+| [`docker/buildx#4057`](https://github.com/docker/buildx/issues/4057) | registry upload backpressure / request lifecycle | BuildKit still limits pushes to four concurrent non-JSON requests per registry domain; containerd's pusher starts a monolithic PUT backed by an `io.Pipe` before producer bytes necessarily arrive and still carries a TODO for chunked upload, so slow-link concurrency can leave accepted upload requests body-idle until a proxy timeout returns a fatal non-retried 400; no matching Buildx PR found |
 
 A candidate leaves this table and becomes a contribution case study only after the repository workflow has produced reproducible verification and an upstream patch/PR.
 
