@@ -135,13 +135,18 @@ Search issue
 
 A diagnosis or issue comment is not presented as a merged upstream contribution. See [UPSTREAM_CONTRIBUTION_WORKFLOW.md](UPSTREAM_CONTRIBUTION_WORKFLOW.md) and [the case-study template](case-studies/CASE_STUDY_TEMPLATE.md).
 
+## Upstream contributions in progress
+
+| Case study | Upstream PR | Status |
+| --- | --- | --- |
+| [`058-vitest-benchmark-project-filter`](case-studies/058-vitest-benchmark-project-filter/) | [`vitest-dev/vitest#11155`](https://github.com/vitest-dev/vitest/pull/11155) | Open — configured project names remain matchable after benchmark-only expansion; regression covers selection, exclusion, and ordinary test mode |
+
 ## Active upstream investigations
 
-_Last reviewed: 2026-09-05._ These are source-inspected candidates in the engineering queue, not claims of contribution.
+_Last reviewed: 2026-09-06._ These are source-inspected candidates in the engineering queue, not claims of contribution.
 
 | Upstream issue | Failure class | Current evidence |
 | --- | --- | --- |
-| [`vitest-dev/vitest#11149`](https://github.com/vitest-dev/vitest/issues/11149) | derived-project identity / CLI filtering regression | Vitest 5 creates benchmark variants with a synthetic `" (bench)"` project name and applies `--project` only after that expansion; the original logical project name is already retained separately in `benchmark.projectName`; no matching open PR found |
 | [`actions/runner#4670`](https://github.com/actions/runner/issues/4670) | job ownership / overlapping assignment cancellation | `JobDispatcher.EnsureDispatchFinished()` explicitly cancels an unfinished previous worker immediately for Run Service jobs, while the legacy path checks server-side job state before cancellation; the reported logs match this branch exactly; no matching open PR found |
 | [`vitest-dev/vitest#11153`](https://github.com/vitest-dev/vitest/issues/11153) | asynchronous console RPC / teardown race | console output is buffered to a microtask and sent through request/response RPC; worker cleanup drains the currently tracked RPC promises once and then rejects any remaining calls as `EnvironmentTeardownError`, leaving a narrow window for a late `onUserConsoleLog` call to become the teardown failure; no matching open PR found |
 
