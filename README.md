@@ -143,13 +143,13 @@ The current strongest proof-of-work item has crossed the investigation gate and 
 
 ## Active upstream investigations
 
-_Last reviewed: 2026-09-06._ These are source-inspected candidates in the engineering queue, not claims of contribution.
+_Last reviewed: 2026-09-07._ These are source-inspected candidates in the engineering queue, not claims of contribution.
 
 | Upstream issue | Failure class | Current evidence |
 | --- | --- | --- |
-| [`microsoft/playwright#42579`](https://github.com/microsoft/playwright/issues/42579) | cross-browser storage-state restore / empty-state semantics | WebKit can reject `navigator.storage.getDirectory()` during restore; the injected restore code says it should fail only when OPFS entries exist but checks only whether `opfs` is undefined, so the legal empty state `opfs: []` throws instead of becoming a no-op; no issue comments or matching fixing PR found |
-| [`cloudflare/workers-sdk#15525`](https://github.com/cloudflare/workers-sdk/issues/15525) | Vite hot-update ownership / dev-server restart race | the additional-modules plugin records resolved Worker `Text` module paths in a shared set and restarts the server whenever a hot-update path is in that set; Cloudflare automated triage independently reproduced the client `index.html` restart plus page-reload race, while plain Vite reloads without restart; no matching PR found |
-| [`docker/buildx#4057`](https://github.com/docker/buildx/issues/4057) | registry upload backpressure / request lifecycle | BuildKit still limits pushes to four concurrent non-JSON requests per registry domain; containerd's pusher starts a monolithic PUT backed by an `io.Pipe` before producer bytes necessarily arrive and still carries a TODO for chunked upload, so slow-link concurrency can leave accepted upload requests body-idle until a proxy timeout returns a fatal non-retried 400; no matching Buildx PR found |
+| [`vitest-dev/vitest#11168`](https://github.com/vitest-dev/vitest/issues/11168) | mock lifecycle / prototype-chain invariant | `mockReset()` recomputes the implementation prototype and `reparentMockPrototype()` can derive `parent === mock.prototype`; its guard checks only the current parent before calling `Object.setPrototypeOf`, so a self-parent attempt throws `Cyclic __proto__ value`; zero issue comments and no matching fixing PR found |
+| [`vitest-dev/vitest#11164`](https://github.com/vitest-dev/vitest/issues/11164) | browser configuration representation / runtime define semantics | Vitest 5 stores raw Vite `define` replacements directly in browser `resolvedTestConfig.defines`, while runtime setup treats those entries as already-parsed values; `JSON.stringify("BAR")` therefore reaches `globalThis` with literal quote characters in browser mode even though the Node path parses it to `BAR`; zero issue comments and no matching fixing PR found |
+| [`moby/buildkit#7125`](https://github.com/moby/buildkit/issues/7125) | Dockerfile lint correctness / ignore-pattern scope | `validateCopySourcePath()` returns immediately whenever the ignore matcher reports any exclusions (`!` patterns), before evaluating the actual COPY source; an unrelated or nonexistent negation therefore disables `CopyIgnoredFile` globally, while a fix still needs to preserve valid directory re-inclusion cases; zero issue comments and no matching fixing PR found |
 
 A candidate leaves this table and becomes a contribution case study only after the repository workflow has produced reproducible verification and an upstream patch/PR.
 
