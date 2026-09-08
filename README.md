@@ -139,17 +139,17 @@ A diagnosis or issue comment is not presented as a merged upstream contribution.
 
 The current strongest proof-of-work item has crossed the investigation gate and is now an upstream PR:
 
-- **Vitest #11155 — benchmark project-filter identity regression:** [`case-studies/058-vitest-benchmark-project-filter-identity/`](case-studies/058-vitest-benchmark-project-filter-identity/) documents reproduction, root cause, bounded TypeScript fix, regression coverage, and full-suite verification. The upstream PR is open, so this is presented as **contribution in review**, not merged work.
+- **[Vitest #11155](https://github.com/vitest-dev/vitest/pull/11155) — benchmark project-filter identity regression:** [`case-studies/058-vitest-benchmark-project-filter-identity/`](case-studies/058-vitest-benchmark-project-filter-identity/) documents reproduction, root cause, bounded TypeScript fix, regression coverage, and full-suite verification. The upstream PR is open, so this is presented as **contribution in review**, not merged work.
 
 ## Active upstream investigations
 
-_Last reviewed: 2026-09-07._ These are source-inspected candidates in the engineering queue, not claims of contribution.
+_Last reviewed: 2026-09-08._ These are source-inspected candidates in the engineering queue, not claims of contribution.
 
 | Upstream issue | Failure class | Current evidence |
 | --- | --- | --- |
-| [`vitest-dev/vitest#11168`](https://github.com/vitest-dev/vitest/issues/11168) | mock lifecycle / prototype-chain invariant | `mockReset()` recomputes the implementation prototype and `reparentMockPrototype()` can derive `parent === mock.prototype`; its guard checks only the current parent before calling `Object.setPrototypeOf`, so a self-parent attempt throws `Cyclic __proto__ value`; zero issue comments and no matching fixing PR found |
-| [`vitest-dev/vitest#11164`](https://github.com/vitest-dev/vitest/issues/11164) | browser configuration representation / runtime define semantics | Vitest 5 stores raw Vite `define` replacements directly in browser `resolvedTestConfig.defines`, while runtime setup treats those entries as already-parsed values; `JSON.stringify("BAR")` therefore reaches `globalThis` with literal quote characters in browser mode even though the Node path parses it to `BAR`; zero issue comments and no matching fixing PR found |
-| [`moby/buildkit#7125`](https://github.com/moby/buildkit/issues/7125) | Dockerfile lint correctness / ignore-pattern scope | `validateCopySourcePath()` returns immediately whenever the ignore matcher reports any exclusions (`!` patterns), before evaluating the actual COPY source; an unrelated or nonexistent negation therefore disables `CopyIgnoredFile` globally, while a fix still needs to preserve valid directory re-inclusion cases; zero issue comments and no matching fixing PR found |
+| [`cloudflare/workers-sdk#15548`](https://github.com/cloudflare/workers-sdk/issues/15548) | incident CLI resilience / dynamic retry scheduling | `workflows instances describe` passes the API sentinel `[dynamic]` through the duration parser and directly into date arithmetic without checking for a finite result; the same branch asserts a failed attempt always has an end timestamp even though the attempts renderer already supports `end: null`; only automated triage is present and no matching fixing PR was found |
+| [`microsoft/playwright#42608`](https://github.com/microsoft/playwright/issues/42608) | shared-resource ownership / cross-client isolation | each MCP client guards recording in its own tool `Context`, but `--shared-browser-context` gives those clients one underlying `BrowserContext`; that object owns a single recorder event sink, so a second client replaces the first sink and the first client's stop disables the shared recorder; no matching fixing PR was found |
+| [`microsoft/playwright#42607`](https://github.com/microsoft/playwright/issues/42607) | browser emulation lifecycle / state restoration | Chromium screenshots use `captureBeyondViewport: !fitsViewport`; touch emulation is configured during frame-session initialization but is not re-applied after capture, while the issue's raw-CDP control shows that re-sending `Emulation.setTouchEmulationEnabled` restores `navigator.maxTouchPoints`; zero issue comments and no matching fixing PR found |
 
 A candidate leaves this table and becomes a contribution case study only after the repository workflow has produced reproducible verification and an upstream patch/PR.
 
