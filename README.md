@@ -143,13 +143,13 @@ The current strongest proof-of-work item has crossed the investigation gate and 
 
 ## Active upstream investigations
 
-_Last reviewed: 2026-09-08._ These are source-inspected candidates in the engineering queue, not claims of contribution.
+_Last reviewed: 2026-09-09._ These are source-inspected candidates in the engineering queue, not claims of contribution.
 
 | Upstream issue | Failure class | Current evidence |
 | --- | --- | --- |
-| [`cloudflare/workers-sdk#15548`](https://github.com/cloudflare/workers-sdk/issues/15548) | incident CLI resilience / dynamic retry scheduling | `workflows instances describe` passes the API sentinel `[dynamic]` through the duration parser and directly into date arithmetic without checking for a finite result; the same branch asserts a failed attempt always has an end timestamp even though the attempts renderer already supports `end: null`; only automated triage is present and no matching fixing PR was found |
-| [`microsoft/playwright#42608`](https://github.com/microsoft/playwright/issues/42608) | shared-resource ownership / cross-client isolation | each MCP client guards recording in its own tool `Context`, but `--shared-browser-context` gives those clients one underlying `BrowserContext`; that object owns a single recorder event sink, so a second client replaces the first sink and the first client's stop disables the shared recorder; no matching fixing PR was found |
-| [`microsoft/playwright#42607`](https://github.com/microsoft/playwright/issues/42607) | browser emulation lifecycle / state restoration | Chromium screenshots use `captureBeyondViewport: !fitsViewport`; touch emulation is configured during frame-session initialization but is not re-applied after capture, while the issue's raw-CDP control shows that re-sending `Emulation.setTouchEmulationEnabled` restores `navigator.maxTouchPoints`; zero issue comments and no matching fixing PR found |
+| [`actions/runner#4686`](https://github.com/actions/runner/issues/4686) | locale-sensitive secret masking / runner startup failure | `PowerShellPreAmpersandEscape` and `PowerShellPostAmpersandEscape` use culture-sensitive string `IndexOf`/`LastIndexOf` after ordinal `Contains` guards; under `th-TH` the reported index can exceed the valid substring boundary and abort every job during secret-masker initialization; zero comments and no matching fixing PR found |
+| [`docker/buildx#4066`](https://github.com/docker/buildx/issues/4066) | provenance boundary / untrusted CI metadata propagation | the docker-container driver stores the complete GitHub event payload in its provenance context, while metadata provenance `min` removes only build config and metadata and therefore retains the raw attacker-influenced payload; curated GitHub actor/ref/repository/workflow fields already exist separately, and no matching fixing PR was found |
+| [`vitest-dev/vitest#11192`](https://github.com/vitest-dev/vitest/issues/11192) | capability detection / custom runtime environment | Doctor decides whether to benchmark `vmThreads`/`vmForks` from a hard-coded `jsdom`/`happy-dom` name set, while the VM runtime's real compatibility check is whether the resolved environment implements `setupVM`; a custom environment derived from happy-dom therefore supports VM pools at runtime but is omitted from Doctor candidates; zero comments and no matching fixing PR found |
 
 A candidate leaves this table and becomes a contribution case study only after the repository workflow has produced reproducible verification and an upstream patch/PR.
 
